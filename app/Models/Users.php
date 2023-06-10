@@ -18,5 +18,4 @@ class Users extends Model
     {
         return $this->hasMany(\App\Models\Notes::class);
     }
-
 }
