@@ -16,7 +16,7 @@ class Users extends Model
      */
     public function notes()
     {
-        return $this->hasMany('App\Models\Notes');
+        return $this->hasMany(\App\Models\Notes::class);
     }
 
     protected $dates = [

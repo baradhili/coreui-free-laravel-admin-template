@@ -13,6 +13,6 @@ class Example extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status', 'status_id');
+        return $this->belongsTo(\App\Models\Status::class, 'status_id');
     }
 }

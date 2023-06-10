@@ -16,7 +16,7 @@ class Notes extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'users_id')->withTrashed();
+        return $this->belongsTo(\App\Models\User::class, 'users_id')->withTrashed();
     }
 
     /**
@@ -24,6 +24,6 @@ class Notes extends Model
      */
     public function status()
     {
-        return $this->belongsTo('App\Models\Status', 'status_id');
+        return $this->belongsTo(\App\Models\Status::class, 'status_id');
     }
 }
