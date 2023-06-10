@@ -19,7 +19,4 @@ class Users extends Model
         return $this->hasMany(\App\Models\Notes::class);
     }
 
-    protected $dates = [
-        'deleted_at',
-    ];
 }
