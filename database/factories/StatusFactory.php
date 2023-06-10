@@ -22,8 +22,8 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'class' => $this->faker->word,
+            'name' => $this->faker->word(),
+            'class' => $this->faker->word(),
         ];
     }
 }
