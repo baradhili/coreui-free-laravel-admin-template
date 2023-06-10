@@ -2,12 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
-use App\Models\User;
 
 class UserTest extends TestCase
 {
@@ -22,7 +20,8 @@ class UserTest extends TestCase
     /**
      * @return void
      */
-    public function testRegularUserCantSeeListOfUsers(){
+    public function testRegularUserCantSeeListOfUsers()
+    {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/users');
         $response->assertStatus(403);
@@ -31,25 +30,28 @@ class UserTest extends TestCase
     /**
      * @return void
      */
-    public function testRegularUserCantSeeSingleUser(){
+    public function testRegularUserCantSeeSingleUser()
+    {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->get('/users/' . $user->id );
+        $response = $this->actingAs($user)->get('/users/'.$user->id);
         $response->assertStatus(403);
     }
 
     /**
      * @return void
      */
-    public function testRegularUserCantOpenEditUserForm(){
+    public function testRegularUserCantOpenEditUserForm()
+    {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->get('/users/'.$user->id . '/edit');
+        $response = $this->actingAs($user)->get('/users/'.$user->id.'/edit');
         $response->assertStatus(403);
     }
 
     /**
      * @return void
      */
-    public function testRegularUserCantEditUser(){
+    public function testRegularUserCantEditUser()
+    {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->put('/users/'.$user->id, $user->toArray());
         $response->assertStatus(403);
@@ -58,7 +60,8 @@ class UserTest extends TestCase
     /**
      * @return void
      */
-    public function testRegularUserCantDeleteUser(){
+    public function testRegularUserCantDeleteUser()
+    {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->delete('/users/'.$user->id);
         $response->assertStatus(403);
@@ -89,7 +92,7 @@ class UserTest extends TestCase
         $adminRole = Role::create(['name' => 'admin']);
         $userOne->assignRole($adminRole);
         $userTwo = User::factory()->create();
-        $response = $this->actingAs($userOne)->get('/users/' . $userTwo->id );
+        $response = $this->actingAs($userOne)->get('/users/'.$userTwo->id);
         $response->assertSee($userTwo->name)->assertSee($userTwo->email);
     }
 
@@ -101,7 +104,7 @@ class UserTest extends TestCase
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
-        $response = $this->actingAs($user)->get('/users/'.$user->id . '/edit');
+        $response = $this->actingAs($user)->get('/users/'.$user->id.'/edit');
         $response->assertSee($user->name)->assertSee($user->email);
     }
 
@@ -116,7 +119,7 @@ class UserTest extends TestCase
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
         $this->actingAs($user)->put('/users/'.$user->id, $user->toArray());
-        $this->assertDatabaseHas('users',['id'=> $user->id , 'name' => 'Updated name', 'email' => 'updated@email.com']);
+        $this->assertDatabaseHas('users', ['id' => $user->id, 'name' => 'Updated name', 'email' => 'updated@email.com']);
     }
 
     /**
@@ -127,8 +130,8 @@ class UserTest extends TestCase
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
         $user->assignRole($adminRole);
-        $this->actingAs( $user );
+        $this->actingAs($user);
         $this->delete('/users/'.$user->id);
-        $this->assertSoftDeleted('users',['id'=> $user->id]);
+        $this->assertSoftDeleted('users', ['id' => $user->id]);
     }
 }

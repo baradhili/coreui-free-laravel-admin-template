@@ -16,15 +16,15 @@ class FolderTableSeeder extends Seeder
     {
         /* Folders  */
 
-        DB::table('folder')->insert([  /* without this folder, nothing works */
+        DB::table('folder')->insert([/* without this folder, nothing works */
             'name' => 'root',
-            'folder_id' => NULL,
+            'folder_id' => null,
         ]);
         $rootId = DB::getPdo()->lastInsertId();
-        DB::table('folder')->insert([   /* without this folder, nothing works - only this folder have column `resource` = 1 */
+        DB::table('folder')->insert([/* without this folder, nothing works - only this folder have column `resource` = 1 */
             'name' => 'resource',
             'folder_id' => $rootId,
-            'resource' => 1
+            'resource' => 1,
         ]);
         DB::table('folder')->insert([
             'name' => 'documents',
@@ -39,7 +39,5 @@ class FolderTableSeeder extends Seeder
             'folder_id' => $rootId,
         ]);
         $id = DB::getPdo()->lastInsertId();
-
-
     }
 }

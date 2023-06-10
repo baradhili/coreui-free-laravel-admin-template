@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -27,38 +26,40 @@ class UsersController extends Controller
     {
         $you = auth()->user();
         $users = User::all();
+
         return view('dashboard.admin.usersList', compact('users', 'you'));
     }
 
     /**
      *  Remove user
-     * 
-     *  @param int $id 
+     *
+     *  @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function remove( $id )
+    public function remove($id)
     {
         $user = User::find($id);
-        if($user){
+        if ($user) {
             $user->delete();
         }
+
         return redirect()->route('adminUsers');
     }
 
     /**
      *  Show the form for editing the user.
-     * 
-     *  @param int $id
+     *
+     *  @param  int  $id
      *  @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editForm( $id )
+    public function editForm($id)
     {
         $user = User::find($id);
+
         return view('dashboard.admin.userEditForm', compact('user'));
     }
 
-    public function edit(){
-
+    public function edit()
+    {
     }
-
 }

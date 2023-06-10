@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+
 //use database\seeds\UsersAndNotesSeeder;
 //use database\seeds\MenusTableSeeder;
 

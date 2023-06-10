@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Status as Status;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StatusFactory extends Factory
 {
@@ -21,9 +21,9 @@ class StatusFactory extends Factory
      */
     public function definition()
     {
-        return [     
+        return [
             'name' => $this->faker->word,
-            'class' => $this->faker->word
+            'class' => $this->faker->word,
         ];
     }
 }
