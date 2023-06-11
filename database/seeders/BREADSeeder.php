@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class BREADSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class BREADSeeder extends Seeder
             'edit' => 1,
             'add' => 1,
             'delete' => 1,
-            'pagination' => 5
+            'pagination' => 5,
         ]);
         $formId = DB::getPdo()->lastInsertId();
         DB::table('form_field')->insert([
@@ -34,7 +34,7 @@ class BREADSeeder extends Seeder
             'edit' => 1,
             'add' => 1,
             'form_id' => $formId,
-            'column_name' => 'name'
+            'column_name' => 'name',
         ]);
         DB::table('form_field')->insert([
             'name' => 'Description',
@@ -44,7 +44,7 @@ class BREADSeeder extends Seeder
             'edit' => 1,
             'add' => 1,
             'form_id' => $formId,
-            'column_name' => 'description'
+            'column_name' => 'description',
         ]);
         DB::table('form_field')->insert([
             'name' => 'Status',
@@ -56,18 +56,18 @@ class BREADSeeder extends Seeder
             'form_id' => $formId,
             'column_name' => 'status_id',
             'relation_table' => 'status',
-            'relation_column' => 'name'
+            'relation_column' => 'name',
         ]);
         $role = Role::where('name', '=', 'guest')->first();
-        Permission::create(['name' => 'browse bread '   . $formId]); 
-        Permission::create(['name' => 'read bread '     . $formId]); 
-        Permission::create(['name' => 'edit bread '     . $formId]); 
-        Permission::create(['name' => 'add bread '      . $formId]); 
-        Permission::create(['name' => 'delete bread '   . $formId]); 
-        $role->givePermissionTo('browse bread '     . $formId);
-        $role->givePermissionTo('read bread '       . $formId);
-        $role->givePermissionTo('edit bread '       . $formId);
-        $role->givePermissionTo('add bread '        . $formId);
-        $role->givePermissionTo('delete bread '     . $formId);
+        Permission::create(['name' => 'browse bread '.$formId]);
+        Permission::create(['name' => 'read bread '.$formId]);
+        Permission::create(['name' => 'edit bread '.$formId]);
+        Permission::create(['name' => 'add bread '.$formId]);
+        Permission::create(['name' => 'delete bread '.$formId]);
+        $role->givePermissionTo('browse bread '.$formId);
+        $role->givePermissionTo('read bread '.$formId);
+        $role->givePermissionTo('edit bread '.$formId);
+        $role->givePermissionTo('add bread '.$formId);
+        $role->givePermissionTo('delete bread '.$formId);
     }
 }

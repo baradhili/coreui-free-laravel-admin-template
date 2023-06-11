@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Users extends Model
 {
@@ -16,10 +16,6 @@ class Users extends Model
      */
     public function notes()
     {
-        return $this->hasMany('App\Models\Notes');
+        return $this->hasMany(\App\Models\Notes::class);
     }
-
-    protected $dates = [
-        'deleted_at'
-    ];
 }

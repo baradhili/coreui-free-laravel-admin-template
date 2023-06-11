@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\DB;
 use App\Models\Menurole;
 use App\Models\RoleHierarchy;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -23,36 +22,41 @@ class RolesController extends Controller
         ->select('roles.*', 'role_hierarchy.hierarchy')
         ->orderBy('hierarchy', 'asc')
         ->get();
-        return view('dashboard.roles.index', array(
+
+        return view('dashboard.roles.index', [
             'roles' => $roles,
-        ));
+        ]);
     }
 
-    public function moveUp(Request $request){
+    public function moveUp(Request $request)
+    {
         $element = RoleHierarchy::where('role_id', '=', $request->input('id'))->first();
         $switchElement = RoleHierarchy::where('hierarchy', '<', $element->hierarchy)
             ->orderBy('hierarchy', 'desc')->first();
-        if(!empty($switchElement)){
+        if (! empty($switchElement)) {
             $temp = $element->hierarchy;
             $element->hierarchy = $switchElement->hierarchy;
             $switchElement->hierarchy = $temp;
             $element->save();
             $switchElement->save();
         }
+
         return redirect()->route('roles.index');
     }
 
-    public function moveDown(Request $request){
+    public function moveDown(Request $request)
+    {
         $element = RoleHierarchy::where('role_id', '=', $request->input('id'))->first();
         $switchElement = RoleHierarchy::where('hierarchy', '>', $element->hierarchy)
             ->orderBy('hierarchy', 'asc')->first();
-        if(!empty($switchElement)){
+        if (! empty($switchElement)) {
             $temp = $element->hierarchy;
             $element->hierarchy = $switchElement->hierarchy;
             $switchElement->hierarchy = $temp;
             $element->save();
             $switchElement->save();
         }
+
         return redirect()->route('roles.index');
     }
 
@@ -69,7 +73,6 @@ class RolesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -79,17 +82,18 @@ class RolesController extends Controller
         $role->save();
         $hierarchy = RoleHierarchy::select('hierarchy')
         ->orderBy('hierarchy', 'desc')->first();
-        if(empty($hierarchy)){
+        if (empty($hierarchy)) {
             $hierarchy = 0;
-        }else{
+        } else {
             $hierarchy = $hierarchy['hierarchy'];
         }
-        $hierarchy = ((integer)$hierarchy) + 1;
+        $hierarchy = ((int) $hierarchy) + 1;
         $roleHierarchy = new RoleHierarchy();
         $roleHierarchy->role_id = $role->id;
         $roleHierarchy->hierarchy = $hierarchy;
         $roleHierarchy->save();
         $request->session()->flash('message', 'Successfully created role');
+
         return redirect()->route('roles.create');
     }
 
@@ -101,9 +105,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        return view('dashboard.roles.show', array(
-            'role' => Role::where('id', '=', $id)->first()
-        ));
+        return view('dashboard.roles.show', [
+            'role' => Role::where('id', '=', $id)->first(),
+        ]);
     }
 
     /**
@@ -114,15 +118,14 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.roles.edit', array(
-            'role' => Role::where('id', '=', $id)->first()
-        ));
+        return view('dashboard.roles.edit', [
+            'role' => Role::where('id', '=', $id)->first(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -132,7 +135,8 @@ class RolesController extends Controller
         $role->name = $request->input('name');
         $role->save();
         $request->session()->flash('message', 'Successfully updated role');
-        return redirect()->route('roles.edit', $id); 
+
+        return redirect()->route('roles.edit', $id);
     }
 
     /**
@@ -146,15 +150,17 @@ class RolesController extends Controller
         $role = Role::where('id', '=', $id)->first();
         $roleHierarchy = RoleHierarchy::where('role_id', '=', $id)->first();
         $menuRole = Menurole::where('role_name', '=', $role->name)->first();
-        if(!empty($menuRole)){
+        if (! empty($menuRole)) {
             $request->session()->flash('message', "Can't delete. Role has assigned one or more menu elements.");
             $request->session()->flash('back', 'roles.index');
+
             return view('dashboard.shared.universal-info');
-        }else{
+        } else {
             $role->delete();
             $roleHierarchy->delete();
-            $request->session()->flash('message', "Successfully deleted role");
+            $request->session()->flash('message', 'Successfully deleted role');
             $request->session()->flash('back', 'roles.index');
+
             return view('dashboard.shared.universal-info');
         }
     }

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
 class EmailSeeder extends Seeder
@@ -16,10 +15,9 @@ class EmailSeeder extends Seeder
     public function run()
     {
         DB::table('email_template')->insert([
-            'name'    => 'Example E-mail',
+            'name' => 'Example E-mail',
             'subject' => 'Example E-mail',
-            'content' => 
-                '<!DOCTYPE html>
+            'content' => '<!DOCTYPE html>
                 <html lang="en">
                 <head>
                     <meta charset="utf-8">
