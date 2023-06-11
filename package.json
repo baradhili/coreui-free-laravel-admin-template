@@ -41,7 +41,7 @@
         "url": "git+https://github.com/coreui/coreui-free-laravel-admin-template.git"
     },
     "scripts": {
-        "build": "npm-run-all build-clean build-copy build-vendors",
+        "build": "vite build",
         "build-clean": "rimraf dist",
         "build-copy": "copyfiles -a -e \"public/scss/**/*\" -u 1 \"public/**/*\" dist/",
         "build-vendors": "node build/vendors.js",
@@ -62,13 +62,7 @@
         "watch-css": "nodemon --ignore dist/ -e scss -x \"npm run css\"",
         "watch-js": "nodemon --watch public/js/src/ -x \"npm run js\"",
         "watch-pug": "nodemon -e pug -x \"npm run pug\"",
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+        "dev": "vite"
     },
     "dependencies": {
         "@coreui/chartjs": "^2.0.0",
