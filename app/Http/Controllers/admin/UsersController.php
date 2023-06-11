@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UsersController extends Controller
 {

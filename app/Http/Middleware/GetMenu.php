@@ -2,14 +2,14 @@
 
 namespace App\Http\Middleware;
 
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\Request;
 use App\Http\Menus\GetSidebarMenu;
 use App\Models\Menulist;
 use App\Models\RoleHierarchy;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetMenu
 {
