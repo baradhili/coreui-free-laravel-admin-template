@@ -106,7 +106,7 @@ class ResourceTest extends TestCase
          $role->givePermissionTo('delete bread '.$formId);
      }
 
-     public function testIndexAccessDenied()
+     public function testIndexAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $this->helperCreateExample('Record_name_1');
@@ -116,7 +116,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testIndex()
+     public function testIndex(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $this->helperCreateExample('Record_name_1');
@@ -128,7 +128,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Form_name_1');
      }
 
-     public function testIndexActingAsUserNoGuest()
+     public function testIndexActingAsUserNoGuest(): void
      {
          $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -152,7 +152,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Form_name_1');
      }
 
-     public function testCreateAccessDenied()
+     public function testCreateAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $this->helperCreateExample('Record_name_1');
@@ -162,7 +162,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testCreateAccessDEnitedTwo()
+     public function testCreateAccessDEnitedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $this->helperCreateExample('Record_name_1');
@@ -172,7 +172,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testCreate()
+     public function testCreate(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $this->helperCreateExample('Record_name_1');
@@ -186,7 +186,7 @@ class ResourceTest extends TestCase
          $response->assertSee('status_id');
      }
 
-     public function testCreateActingAsUserNoGuest()
+     public function testCreateActingAsUserNoGuest(): void
      {
          $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -212,7 +212,7 @@ class ResourceTest extends TestCase
          $response->assertSee('status_id');
      }
 
-     public function testStoreAccessDenied()
+     public function testStoreAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $this->helperCreateExample('Record_name_1');
@@ -222,7 +222,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testStoreAccessDeniedTwo()
+     public function testStoreAccessDeniedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $this->helperCreateExample('Record_name_1');
@@ -241,7 +241,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testStore()
+     public function testStore(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $this->helperCreateExample('Record_name_1');
@@ -260,7 +260,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(302);
      }
 
-     public function testStoreActingAsUserNoGuest()
+     public function testStoreActingAsUserNoGuest(): void
      {
          $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -291,7 +291,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(302);
      }
 
-     public function testShowAccessDenied()
+     public function testShowAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -301,7 +301,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testShowAccessDeniedTwo()
+     public function testShowAccessDeniedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -311,7 +311,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testShow()
+     public function testShow(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -325,7 +325,7 @@ class ResourceTest extends TestCase
          $response->assertSee('status_id');
      }
 
-     public function testShowActingAsUserNoGuest()
+     public function testShowActingAsUserNoGuest(): void
      {
          $exampleId = $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -351,7 +351,7 @@ class ResourceTest extends TestCase
          $response->assertSee('status_id');
      }
 
-     public function testEditAccessDenied()
+     public function testEditAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -361,7 +361,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testEditAccessDeniedTwo()
+     public function testEditAccessDeniedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -371,7 +371,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testEdit()
+     public function testEdit(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -386,7 +386,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Record_name_1');
      }
 
-     public function testEditActingAsUserNoGuest()
+     public function testEditActingAsUserNoGuest(): void
      {
          $exampleId = $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -413,7 +413,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Record_name_1');
      }
 
-     public function testUpdateAccessDenied()
+     public function testUpdateAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -423,7 +423,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testUpdateAccessDeniedTwo()
+     public function testUpdateAccessDeniedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -438,7 +438,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testUpdate()
+     public function testUpdate(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -458,7 +458,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(302);
      }
 
-     public function testUpdateActingAsUserNoGuest()
+     public function testUpdateActingAsUserNoGuest(): void
      {
          $exampleId = $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -490,7 +490,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(302);
      }
 
-     public function testDeleteAccessDenied()
+     public function testDeleteAccessDenied(): void
      {
          $this->helperCreateRoleGuest(1, false);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -503,7 +503,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testDeleteAccessDeniedTwo()
+     public function testDeleteAccessDeniedTwo(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -516,7 +516,7 @@ class ResourceTest extends TestCase
          $response->assertStatus(401);
      }
 
-     public function testDelete()
+     public function testDelete(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -530,7 +530,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Form_name_1');
      }
 
-     public function testDeleteMarker()
+     public function testDeleteMarker(): void
      {
          $this->helperCreateRoleGuest(1, true);
          $exampleId = $this->helperCreateExample('Record_name_1');
@@ -542,7 +542,7 @@ class ResourceTest extends TestCase
          $this->assertDatabaseMissing('example', ['name' => 'Record_name_1']);
      }
 
-     public function testDeleteActingAsUserNoGuest()
+     public function testDeleteActingAsUserNoGuest(): void
      {
          $exampleId = $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);
@@ -568,7 +568,7 @@ class ResourceTest extends TestCase
          $response->assertSee('Form_name_1');
      }
 
-     public function testDeleteMarkerActingAsUserNoGuest()
+     public function testDeleteMarkerActingAsUserNoGuest(): void
      {
          $exampleId = $this->helperCreateExample('Record_name_1');
          $formId = $this->helperCreateForm('Form_name_1', true);

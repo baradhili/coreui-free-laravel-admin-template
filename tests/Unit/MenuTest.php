@@ -12,7 +12,7 @@ class MenuTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testMenuIndex()
+    public function testMenuIndex(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -27,7 +27,7 @@ class MenuTest extends TestCase
         $response->assertSee('Menus list');
     }
 
-    public function testMenuCreate()
+    public function testMenuCreate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -36,7 +36,7 @@ class MenuTest extends TestCase
         $response->assertSee('Create menu');
     }
 
-    public function testMenuStore()
+    public function testMenuStore(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -45,7 +45,7 @@ class MenuTest extends TestCase
         $this->assertDatabaseHas('menulist', ['name' => 'test3']);
     }
 
-    public function testMenuEdit()
+    public function testMenuEdit(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -57,7 +57,7 @@ class MenuTest extends TestCase
         $response->assertSee('test2');
     }
 
-    public function testMenuUpdate()
+    public function testMenuUpdate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -70,7 +70,7 @@ class MenuTest extends TestCase
         $this->assertDatabaseHas('menulist', ['name' => 'test3']);
     }
 
-    public function testMenuDelete()
+    public function testMenuDelete(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);

@@ -74,7 +74,7 @@ class BreadTest extends TestCase
         $this->helperCreateFormField($form->id, 'status_id', true);
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $user = User::factory()->admin()->create();
         Role::create(['name' => 'admin']);
@@ -86,7 +86,7 @@ class BreadTest extends TestCase
         $response->assertSee('Some test name');
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $user = User::factory()->admin()->create();
         Role::create(['name' => 'admin']);
@@ -97,7 +97,7 @@ class BreadTest extends TestCase
         $response->assertSee('Table name in database');
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $user = User::factory()->admin()->create();
         Role::create(['name' => 'admin']);
@@ -112,7 +112,7 @@ class BreadTest extends TestCase
         $response->assertSee('Table not detected, or there is no columns in table');
     }
 
-    public function testStore2()
+    public function testStore2(): void
     {
         $user = User::factory()->admin()->create();
         Role::create(['name' => 'admin']);
@@ -132,7 +132,7 @@ class BreadTest extends TestCase
         }
     }
 
-    public function testStore3()
+    public function testStore3(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::where('name', '=', 'admin')->first();
@@ -185,7 +185,7 @@ class BreadTest extends TestCase
         }
     }
 
-    public function testEdit()
+    public function testEdit(): void
     {
         $this->testStore3();
         $user = User::factory()->admin()->create();
@@ -202,7 +202,7 @@ class BreadTest extends TestCase
         $response->assertSee('Records on one page of table');
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $this->testStore3();
         $user = User::factory()->admin()->create();
@@ -248,7 +248,7 @@ class BreadTest extends TestCase
         }
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $this->testStore3();
         $user = User::factory()->admin()->create();
@@ -266,7 +266,7 @@ class BreadTest extends TestCase
         $response->assertSee('Records on one page of table');
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $this->testStore3();
         $user = User::factory()->admin()->create();
@@ -281,7 +281,7 @@ class BreadTest extends TestCase
         $response->assertSee('Are you sure?');
     }
 
-    public function testDelete2()
+    public function testDelete2(): void
     {
         $this->testStore3();
         $user = User::factory()->admin()->create();

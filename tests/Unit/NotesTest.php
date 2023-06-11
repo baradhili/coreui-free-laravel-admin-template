@@ -15,7 +15,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanReadListOfNotes()
+    public function testCanReadListOfNotes(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -32,7 +32,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanReadSingleNote()
+    public function testCanReadSingleNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -45,7 +45,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanOpenNoteCreateForm()
+    public function testCanOpenNoteCreateForm(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -58,7 +58,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanCreateNewNote()
+    public function testCanCreateNewNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -71,7 +71,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanOpenNoteEdition()
+    public function testCanOpenNoteEdition(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -84,7 +84,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanEditNote()
+    public function testCanEditNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -99,7 +99,7 @@ class NotesTest extends TestCase
     /**
      * @return void
      */
-    public function testCanDeleteNote()
+    public function testCanDeleteNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);

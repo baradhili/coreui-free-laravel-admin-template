@@ -13,7 +13,7 @@ class NotesFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'title' => $this->faker->sentence(4, true),
