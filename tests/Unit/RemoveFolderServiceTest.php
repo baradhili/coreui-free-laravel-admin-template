@@ -2,22 +2,17 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Spatie\Permission\Models\Role;
-use Tests\TestCase;
 use App\Models\Folder;
-
-use Illuminate\Http\UploadedFile;
-
 use App\Services\RemoveFolderService;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class RemoveFolderServiceTest extends TestCase
 {
     use DatabaseMigrations;
-    
-    public function testFindFolderChildrens(){
+
+    public function testFindFolderChildrens()
+    {
         $folder = new Folder();
         $folder->name = 'test1';
         $folder->save();
@@ -27,14 +22,15 @@ class RemoveFolderServiceTest extends TestCase
         $folder2->save();
         $media = $folder2->getMedia()->first();
         $removeFolderService = new RemoveFolderService();
-        $this->assertSame($removeFolderService->foldersArray, array());
+        $this->assertSame($removeFolderService->foldersArray, []);
         $removeFolderService->findFolderChildAnd($folder->id, null);
         $result = $removeFolderService->foldersArray;
         $this->assertSame($result[0], $folder->id);
         $this->assertSame($result[1], $folder2->id);
     }
 
-    public function testFolderDelete(){
+    public function testFolderDelete()
+    {
         $folder = new Folder();
         $folder->name = 'test1';
         $folder->save();
@@ -51,14 +47,14 @@ class RemoveFolderServiceTest extends TestCase
         $folder4->folder_id = $folder->id;
         $folder4->save();
         $removeFolderService = new RemoveFolderService();
-        $this->assertDatabaseHas('folder',['name' => 'test1' ]);
-        $this->assertDatabaseHas('folder',['name' => 'test2' ]);
-        $this->assertDatabaseHas('folder',['name' => 'test3' ]);
-        $this->assertDatabaseHas('folder',['name' => 'test4' ]);
+        $this->assertDatabaseHas('folder', ['name' => 'test1']);
+        $this->assertDatabaseHas('folder', ['name' => 'test2']);
+        $this->assertDatabaseHas('folder', ['name' => 'test3']);
+        $this->assertDatabaseHas('folder', ['name' => 'test4']);
         $removeFolderService->folderDelete($folder2->id, null);
-        $this->assertDatabaseHas('folder',['name' => 'test1' ]);
-        $this->assertDatabaseMissing('folder',[ 'name' => 'test2']);
-        $this->assertDatabaseMissing('folder',[ 'name' => 'test3']);
-        $this->assertDatabaseHas('folder',['name' => 'test4' ]);
+        $this->assertDatabaseHas('folder', ['name' => 'test1']);
+        $this->assertDatabaseMissing('folder', ['name' => 'test2']);
+        $this->assertDatabaseMissing('folder', ['name' => 'test3']);
+        $this->assertDatabaseHas('folder', ['name' => 'test4']);
     }
 }
