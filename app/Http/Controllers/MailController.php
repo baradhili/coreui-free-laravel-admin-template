@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\EmailTemplate;
 use Illuminate\Http\Request;
 use Mail;
@@ -13,7 +15,7 @@ class MailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $emailTemplates = EmailTemplate::paginate(20);
 
@@ -25,7 +27,7 @@ class MailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('dashboard.email.create');
     }
@@ -35,7 +37,7 @@ class MailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:64',
@@ -58,7 +60,7 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $template = EmailTemplate::find($id);
 
@@ -71,7 +73,7 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $template = EmailTemplate::find($id);
 
@@ -84,7 +86,7 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:64',
@@ -107,7 +109,7 @@ class MailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(int $id, Request $request): RedirectResponse
     {
         $template = EmailTemplate::find($id);
         if ($template) {
@@ -118,14 +120,14 @@ class MailController extends Controller
         return redirect()->route('mail.index');
     }
 
-    public function prepareSend($id)
+    public function prepareSend($id): View
     {
         $template = EmailTemplate::find($id);
 
         return view('dashboard.email.send', ['template' => $template]);
     }
 
-    public function send($id, Request $request)
+    public function send($id, Request $request): RedirectResponse
     {
         $template = EmailTemplate::find($id);
         Mail::send([], [], function ($message) use ($request, $template) {

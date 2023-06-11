@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Form;
 use App\Models\FormField;
 use App\Services\FormService;
@@ -16,7 +18,7 @@ class BreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         //var_dump(DB::getSchemaBuilder()->getColumnListing('model'));
 
@@ -28,7 +30,7 @@ class BreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('dashboard.form.create');
     }
@@ -78,7 +80,7 @@ class BreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         return view('dashboard.form.show', [
             'form' => Form::find($id),
@@ -92,7 +94,7 @@ class BreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $formService = new FormService();
         $rolesService = new RolesService();
@@ -112,7 +114,7 @@ class BreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:128',
@@ -131,7 +133,7 @@ class BreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(int $id, Request $request)
     {
         $form = Form::find($id);
         if ($request->has('marker')) {

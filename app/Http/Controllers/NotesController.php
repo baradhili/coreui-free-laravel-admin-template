@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Notes;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -23,7 +25,7 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $notes = Notes::with('user')->with('status')->paginate(20);
 
@@ -35,7 +37,7 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $statuses = Status::all();
 
@@ -47,7 +49,7 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'title' => 'required|min:1|max:64',
@@ -76,7 +78,7 @@ class NotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $note = Notes::with('user')->with('status')->find($id);
 
@@ -89,7 +91,7 @@ class NotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $note = Notes::find($id);
         $statuses = Status::all();
@@ -103,7 +105,7 @@ class NotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         //var_dump('bazinga');
         //die();
@@ -132,7 +134,7 @@ class NotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
         $note = Notes::find($id);
         if ($note) {

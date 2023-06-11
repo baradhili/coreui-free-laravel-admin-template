@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 
@@ -22,7 +24,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): View
     {
         $you = auth()->user();
         $users = User::all();
@@ -36,7 +38,7 @@ class UsersController extends Controller
      *  @param  int  $id
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function remove($id)
+    public function remove($id): RedirectResponse
     {
         $user = User::find($id);
         if ($user) {
@@ -52,7 +54,7 @@ class UsersController extends Controller
      *  @param  int  $id
      *  @return \Illuminate\Contracts\Support\Renderable
      */
-    public function editForm($id)
+    public function editForm($id): View
     {
         $user = User::find($id);
 

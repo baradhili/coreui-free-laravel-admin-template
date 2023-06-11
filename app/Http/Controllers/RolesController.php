@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Models\Menurole;
 use App\Models\RoleHierarchy;
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $roles = DB::table('roles')
         ->leftJoin('role_hierarchy', 'roles.id', '=', 'role_hierarchy.role_id')
@@ -28,7 +30,7 @@ class RolesController extends Controller
         ]);
     }
 
-    public function moveUp(Request $request)
+    public function moveUp(Request $request): RedirectResponse
     {
         $element = RoleHierarchy::where('role_id', '=', $request->input('id'))->first();
         $switchElement = RoleHierarchy::where('hierarchy', '<', $element->hierarchy)
@@ -44,7 +46,7 @@ class RolesController extends Controller
         return redirect()->route('roles.index');
     }
 
-    public function moveDown(Request $request)
+    public function moveDown(Request $request): RedirectResponse
     {
         $element = RoleHierarchy::where('role_id', '=', $request->input('id'))->first();
         $switchElement = RoleHierarchy::where('hierarchy', '>', $element->hierarchy)
@@ -65,7 +67,7 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('dashboard.roles.create');
     }
@@ -75,7 +77,7 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $role = new Role();
         $role->name = $request->input('name');
@@ -103,7 +105,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         return view('dashboard.roles.show', [
             'role' => Role::where('id', '=', $id)->first(),
@@ -116,7 +118,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         return view('dashboard.roles.edit', [
             'role' => Role::where('id', '=', $id)->first(),
@@ -129,7 +131,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $role = Role::where('id', '=', $id)->first();
         $role->name = $request->input('name');
@@ -145,7 +147,7 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(int $id, Request $request): View
     {
         $role = Role::where('id', '=', $id)->first();
         $roleHierarchy = RoleHierarchy::where('role_id', '=', $id)->first();

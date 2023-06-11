@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Models\Menulist;
 use App\Models\Menus;
 use Illuminate\Http\Request;
@@ -19,19 +21,19 @@ class MenuController extends Controller
         $this->middleware('admin');
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('dashboard.editmenu.menu.index', [
             'menulist' => Menulist::all(),
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('dashboard.editmenu.menu.create', []);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:64',
@@ -44,14 +46,14 @@ class MenuController extends Controller
         return redirect()->route('menu.menu.create');
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
         return view('dashboard.editmenu.menu.edit', [
             'menulist' => Menulist::where('id', '=', $request->input('id'))->first(),
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required',
@@ -73,7 +75,7 @@ class MenuController extends Controller
     }
     */
 
-    public function delete(Request $request)
+    public function delete(Request $request): View
     {
         $menus = Menus::where('menu_id', '=', $request->input('id'))->first();
         if (! empty($menus)) {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Form;
 use App\Models\FormField;
 use App\Services\FormService;
@@ -18,7 +20,7 @@ class ResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($table, Request $request)
+    public function index($table, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -55,7 +57,7 @@ class ResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($table, Request $request)
+    public function create($table, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -96,7 +98,7 @@ class ResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store($table, Request $request)
+    public function store($table, Request $request): RedirectResponse
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -139,7 +141,7 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($table, $id, Request $request)
+    public function show($table, int $id, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -177,7 +179,7 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($table, $id)
+    public function edit($table, int $id): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -219,7 +221,7 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($table, $id, Request $request)
+    public function update($table, int $id, Request $request): RedirectResponse
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -262,7 +264,7 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($table, Request $request, $id)
+    public function destroy($table, Request $request, int $id)
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {

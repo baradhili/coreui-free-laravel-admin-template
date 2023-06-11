@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Folder;
 use App\Services\RemoveFolderService;
 use Illuminate\Http\Request;
@@ -40,7 +42,7 @@ class MediaController extends Controller
         return $result;
     }
 
-    public function folderAdd(Request $request)
+    public function folderAdd(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'thisFolder' => 'required|numeric',
@@ -55,7 +57,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function folderUpdate(Request $request)
+    public function folderUpdate(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:256',
@@ -68,7 +70,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function folder(Request $request)
+    public function folder(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -81,7 +83,7 @@ class MediaController extends Controller
         ]);
     }
 
-    public function folderMove(Request $request)
+    public function folderMove(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -103,7 +105,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function folderDelete(Request $request)
+    public function folderDelete(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -115,7 +117,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function fileAdd(Request $request)
+    public function fileAdd(Request $request): RedirectResponse
     {
         request()->validate([
             'file' => 'required',
@@ -134,7 +136,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function file(Request $request)
+    public function file(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -155,7 +157,7 @@ class MediaController extends Controller
         ]);
     }
 
-    public function fileDelete(Request $request)
+    public function fileDelete(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -168,7 +170,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function fileUpdate(Request $request)
+    public function fileUpdate(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:256',
@@ -183,7 +185,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function fileMove(Request $request)
+    public function fileMove(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
@@ -203,7 +205,7 @@ class MediaController extends Controller
         return redirect()->route('media.folder.index', ['id' => $request->input('thisFolder')]);
     }
 
-    public function cropp(Request $request)
+    public function cropp(Request $request): JsonResponse
     {
         request()->validate([
             'file' => 'required',
@@ -225,7 +227,7 @@ class MediaController extends Controller
         return response()->json('success');
     }
 
-    public function fileCopy(Request $request)
+    public function fileCopy(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'id' => 'required|numeric',
