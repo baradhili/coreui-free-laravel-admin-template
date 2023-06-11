@@ -11,7 +11,7 @@ class RemoveFolderServiceTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testFindFolderChildrens()
+    public function testFindFolderChildrens(): void
     {
         $folder = new Folder();
         $folder->name = 'test1';
@@ -29,7 +29,7 @@ class RemoveFolderServiceTest extends TestCase
         $this->assertSame($result[1], $folder2->id);
     }
 
-    public function testFolderDelete()
+    public function testFolderDelete(): void
     {
         $folder = new Folder();
         $folder->name = 'test1';

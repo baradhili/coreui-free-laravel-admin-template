@@ -10,10 +10,8 @@ class ExampleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $faker = Faker::create();
         $statuses = DB::table('status')->get();

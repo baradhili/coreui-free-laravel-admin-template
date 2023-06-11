@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmailTemplate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Mail;
 
 class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $emailTemplates = EmailTemplate::paginate(20);
 
@@ -22,20 +22,16 @@ class MailController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('dashboard.email.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:64',
@@ -54,11 +50,8 @@ class MailController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $template = EmailTemplate::find($id);
 
@@ -67,11 +60,8 @@ class MailController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $template = EmailTemplate::find($id);
 
@@ -80,11 +70,8 @@ class MailController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:64',
@@ -103,11 +90,8 @@ class MailController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(int $id, Request $request): RedirectResponse
     {
         $template = EmailTemplate::find($id);
         if ($template) {
@@ -118,14 +102,14 @@ class MailController extends Controller
         return redirect()->route('mail.index');
     }
 
-    public function prepareSend($id)
+    public function prepareSend($id): View
     {
         $template = EmailTemplate::find($id);
 
         return view('dashboard.email.send', ['template' => $template]);
     }
 
-    public function send($id, Request $request)
+    public function send($id, Request $request): RedirectResponse
     {
         $template = EmailTemplate::find($id);
         Mail::send([], [], function ($message) use ($request, $template) {

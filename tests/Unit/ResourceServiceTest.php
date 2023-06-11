@@ -75,7 +75,7 @@ class ResourceServiceTest extends TestCase
         $status->save();
     }
 
-    public function testAddMedia()
+    public function testAddMedia(): void
     {
         $folder = new Folder();
         $folder->name = 'Resource';
@@ -92,7 +92,7 @@ class ResourceServiceTest extends TestCase
         ]);
     }
 
-    public function testGetMediaUrl()
+    public function testGetMediaUrl(): void
     {
         $this->testAddMedia();
         $resourceService = new ResourceService();
@@ -105,7 +105,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame(true, $result);
     }
 
-    public function testGetFullIndexHeader()
+    public function testGetFullIndexHeader(): void
     {
         $this->helperCreateFormField(1, 'test_1');
         $this->helperCreateFormField(1, 'test_2');
@@ -123,7 +123,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testGetRelations()
+    public function testGetRelations(): void
     {
         $this->helperCreateStatusRecord();
         $this->helperCreateStatusRecord();
@@ -140,7 +140,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testGetIndexDatas()
+    public function testGetIndexDatas(): void
     {
         $formId = $this->helperCreateForm('Form name');
         $this->helperCreateExample('Lorem');
@@ -173,7 +173,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame($expectedData, $result['data']);
     }
 
-    public function testGetColumnsForAdd()
+    public function testGetColumnsForAdd(): void
     {
         $this->helperCreateFormField(1, 'test_1');
         $this->helperCreateFormField(1, 'test_2');
@@ -191,7 +191,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testAdd()
+    public function testAdd(): void
     {
         $formId = $this->helperCreateForm('Form name');
         $resourceService = new ResourceService();
@@ -208,7 +208,7 @@ class ResourceServiceTest extends TestCase
         ]);
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $formId = $this->helperCreateForm('Form name');
         $exampleId = $this->helperCreateExample('test');
@@ -227,7 +227,7 @@ class ResourceServiceTest extends TestCase
         ]);
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $formId = $this->helperCreateForm('Form name');
         $exampleId = $this->helperCreateExample('test');
@@ -253,7 +253,7 @@ class ResourceServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testGetColumnsForEdit()
+    public function testGetColumnsForEdit(): void
     {
         $formId = $this->helperCreateForm('Form name');
         $exampleId = $this->helperCreateExample('test');

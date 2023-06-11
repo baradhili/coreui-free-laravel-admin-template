@@ -14,10 +14,8 @@ class UsersAndNotesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $numberOfUsers = 10;
         $numberOfNotes = 100;

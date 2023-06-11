@@ -12,10 +12,7 @@ class NotesTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * @return void
-     */
-    public function testCanReadListOfNotes()
+    public function testCanReadListOfNotes(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -29,10 +26,7 @@ class NotesTest extends TestCase
         ->assertSee($noteTwo->content);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanReadSingleNote()
+    public function testCanReadSingleNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -42,10 +36,7 @@ class NotesTest extends TestCase
         $response->assertSee($note->title)->assertSee($note->content);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanOpenNoteCreateForm()
+    public function testCanOpenNoteCreateForm(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -55,10 +46,7 @@ class NotesTest extends TestCase
         $response->assertSee('Create Note');
     }
 
-    /**
-     * @return void
-     */
-    public function testCanCreateNewNote()
+    public function testCanCreateNewNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -68,10 +56,7 @@ class NotesTest extends TestCase
         $this->assertDatabaseHas('notes', ['title' => $note->title, 'content' => $note->content]);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanOpenNoteEdition()
+    public function testCanOpenNoteEdition(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -81,10 +66,7 @@ class NotesTest extends TestCase
         $response->assertSee($note->title)->assertSee($note->content);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanEditNote()
+    public function testCanEditNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
@@ -96,10 +78,7 @@ class NotesTest extends TestCase
         $this->assertDatabaseHas('notes', ['id' => $note->id, 'title' => 'Updated title', 'content' => 'Updated content']);
     }
 
-    /**
-     * @return void
-     */
-    public function testCanDeleteNote()
+    public function testCanDeleteNote(): void
     {
         $user = User::factory()->create();
         $roleUser = Role::create(['name' => 'user']);
