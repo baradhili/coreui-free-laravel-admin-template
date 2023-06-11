@@ -7,9 +7,6 @@ use Tests\TestCase;
 
 class RenderFromDatabaseDataTest extends TestCase
 {
-    /**
-     * @return void
-     */
     public function testRenderSimpleInput(): void
     {
         $input = [
@@ -39,9 +36,6 @@ class RenderFromDatabaseDataTest extends TestCase
         $this->assertSame($result, $provided);
     }
 
-    /**
-     * @return void
-     */
     public function testRender(): void
     {
         $input = [

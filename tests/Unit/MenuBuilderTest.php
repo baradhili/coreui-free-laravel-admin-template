@@ -7,9 +7,6 @@ use Tests\TestCase;
 
 class MenuBuilderTest extends TestCase
 {
-    /**
-     * @return void
-     */
     public function testAddSingleLinkWitchIcon(): void
     {
         $provided = [[
@@ -28,9 +25,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddSingleLinkWitchDefaultTypeOfIcon(): void
     {
         $provided = [[
@@ -49,9 +43,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddSingleLinkNoIcon(): void
     {
         $provided = [[
@@ -68,9 +59,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddThreeLinks(): void
     {
         $provided = [[
@@ -103,9 +91,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddSingleTitleWitchIcon(): void
     {
         $provided = [[
@@ -123,9 +108,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddSingleTitleWitchDefaultIconType(): void
     {
         $provided = [[
@@ -143,9 +125,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddSingleTitleNoIcon(): void
     {
         $provided = [[
@@ -161,9 +140,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testAddThreeTitle(): void
     {
         $provided = [[
@@ -193,9 +169,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testBeginDropdownWitchIcon(): void
     {
         $provided = [[
@@ -214,9 +187,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testBeginDropdownWitchDefaultIconType(): void
     {
         $provided = [[
@@ -235,9 +205,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testBeginDropdownWitchNoIcon(): void
     {
         $provided = [[
@@ -254,9 +221,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testThreeBeginDropdown(): void
     {
         $provided = [[
@@ -292,9 +256,6 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testBeginDropdownWitchTwoElements(): void
     {
         $provided = [[

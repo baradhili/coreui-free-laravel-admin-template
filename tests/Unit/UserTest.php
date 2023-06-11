@@ -17,9 +17,6 @@ class UserTest extends TestCase
         $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
     }
 
-    /**
-     * @return void
-     */
     public function testRegularUserCantSeeListOfUsers(): void
     {
         $user = User::factory()->create();
@@ -27,9 +24,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * @return void
-     */
     public function testRegularUserCantSeeSingleUser(): void
     {
         $user = User::factory()->create();
@@ -37,9 +31,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * @return void
-     */
     public function testRegularUserCantOpenEditUserForm(): void
     {
         $user = User::factory()->create();
@@ -47,9 +38,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * @return void
-     */
     public function testRegularUserCantEditUser(): void
     {
         $user = User::factory()->create();
@@ -57,9 +45,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * @return void
-     */
     public function testRegularUserCantDeleteUser(): void
     {
         $user = User::factory()->create();
@@ -67,9 +52,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * @return void
-     */
     public function testCanReadListOfUsers(): void
     {
         $userOne = User::factory()->admin()->create();
@@ -83,9 +65,6 @@ class UserTest extends TestCase
         ->assertSee($userTwo->email);
     }
 
-    /**
-     * @return void
-     */
     public function testCanReadSingleUsers(): void
     {
         $userOne = User::factory()->admin()->create();
@@ -96,9 +75,6 @@ class UserTest extends TestCase
         $response->assertSee($userTwo->name)->assertSee($userTwo->email);
     }
 
-    /**
-     * @return void
-     */
     public function testCanOpenUserEdition(): void
     {
         $user = User::factory()->admin()->create();
@@ -108,9 +84,6 @@ class UserTest extends TestCase
         $response->assertSee($user->name)->assertSee($user->email);
     }
 
-    /**
-     * @return void
-     */
     public function testCanEditUser(): void
     {
         $user = User::factory()->admin()->create();
@@ -122,9 +95,6 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('users', ['id' => $user->id, 'name' => 'Updated name', 'email' => 'updated@email.com']);
     }
 
-    /**
-     * @return void
-     */
     public function testCanDeleteUser(): void
     {
         $user = User::factory()->admin()->create();

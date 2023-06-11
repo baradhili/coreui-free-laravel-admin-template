@@ -21,8 +21,6 @@ class UsersController extends Controller
 
     /**
      * Show the users list.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(): View
     {
@@ -36,7 +34,6 @@ class UsersController extends Controller
      *  Remove user
      *
      *  @param  int  $id
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function remove($id): RedirectResponse
     {
@@ -52,7 +49,6 @@ class UsersController extends Controller
      *  Show the form for editing the user.
      *
      *  @param  int  $id
-     *  @return \Illuminate\Contracts\Support\Renderable
      */
     public function editForm($id): View
     {

@@ -17,8 +17,6 @@ class ResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index($table, Request $request): View
     {
@@ -54,8 +52,6 @@ class ResourceController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create($table, Request $request): View
     {
@@ -95,8 +91,6 @@ class ResourceController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function store($table, Request $request): RedirectResponse
     {
@@ -137,9 +131,6 @@ class ResourceController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($table, int $id, Request $request): View
     {
@@ -175,9 +166,6 @@ class ResourceController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($table, int $id): View
     {
@@ -217,9 +205,6 @@ class ResourceController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update($table, int $id, Request $request): RedirectResponse
     {
@@ -261,7 +246,6 @@ class ResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($table, Request $request, int $id)
