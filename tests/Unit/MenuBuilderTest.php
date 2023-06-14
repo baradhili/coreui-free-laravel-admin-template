@@ -7,10 +7,7 @@ use Tests\TestCase;
 
 class MenuBuilderTest extends TestCase
 {
-    /**
-     * @return void
-     */
-    public function testAddSingleLinkWitchIcon()
+    public function testAddSingleLinkWitchIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -28,10 +25,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddSingleLinkWitchDefaultTypeOfIcon()
+    public function testAddSingleLinkWitchDefaultTypeOfIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -49,10 +43,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddSingleLinkNoIcon()
+    public function testAddSingleLinkNoIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -68,10 +59,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddThreeLinks()
+    public function testAddThreeLinks(): void
     {
         $provided = [[
             'id' => 1,
@@ -103,10 +91,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddSingleTitleWitchIcon()
+    public function testAddSingleTitleWitchIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -123,10 +108,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddSingleTitleWitchDefaultIconType()
+    public function testAddSingleTitleWitchDefaultIconType(): void
     {
         $provided = [[
             'id' => 1,
@@ -143,10 +125,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddSingleTitleNoIcon()
+    public function testAddSingleTitleNoIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -161,10 +140,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testAddThreeTitle()
+    public function testAddThreeTitle(): void
     {
         $provided = [[
             'id' => 1,
@@ -193,10 +169,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testBeginDropdownWitchIcon()
+    public function testBeginDropdownWitchIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -214,10 +187,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testBeginDropdownWitchDefaultIconType()
+    public function testBeginDropdownWitchDefaultIconType(): void
     {
         $provided = [[
             'id' => 1,
@@ -235,10 +205,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testBeginDropdownWitchNoIcon()
+    public function testBeginDropdownWitchNoIcon(): void
     {
         $provided = [[
             'id' => 1,
@@ -254,10 +221,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testThreeBeginDropdown()
+    public function testThreeBeginDropdown(): void
     {
         $provided = [[
             'id' => 1,
@@ -292,10 +256,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    /**
-     * @return void
-     */
-    public function testBeginDropdownWitchTwoElements()
+    public function testBeginDropdownWitchTwoElements(): void
     {
         $provided = [[
             'id' => 1,
@@ -331,7 +292,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    public function testLinkInDropdownInDropdown()
+    public function testLinkInDropdownInDropdown(): void
     {
         $provided = [[
             'id' => 1,
@@ -365,7 +326,7 @@ class MenuBuilderTest extends TestCase
         $this->assertSame($provided, $result);
     }
 
-    public function testComplex()
+    public function testComplex(): void
     {
         $provided = [
             [

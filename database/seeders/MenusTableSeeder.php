@@ -137,10 +137,8 @@ class MenusTableSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         /* Get roles */
         $this->adminRole = Role::where('name', '=', 'admin')->first();

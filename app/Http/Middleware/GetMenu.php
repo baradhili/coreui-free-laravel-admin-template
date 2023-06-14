@@ -6,18 +6,17 @@ use App\Http\Menus\GetSidebarMenu;
 use App\Models\Menulist;
 use App\Models\RoleHierarchy;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetMenu
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
             $role = 'guest';

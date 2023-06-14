@@ -13,7 +13,7 @@ class MediaTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -29,7 +29,7 @@ class MediaTest extends TestCase
         $response->assertSee('test2');
     }
 
-    public function testIndex2()
+    public function testIndex2(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -49,7 +49,7 @@ class MediaTest extends TestCase
         $response->assertSee('test3');
     }
 
-    public function testFolderAdd()
+    public function testFolderAdd(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -58,7 +58,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('folder', ['name' => 'New Folder', 'folder_id' => 45]);
     }
 
-    public function testFolderUpdate()
+    public function testFolderUpdate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -74,7 +74,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('folder', ['name' => 'test2', 'id' => $folder->id]);
     }
 
-    public function testFolder()
+    public function testFolder(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -89,7 +89,7 @@ class MediaTest extends TestCase
         ]);
     }
 
-    public function testFolderMoveUp()
+    public function testFolderMoveUp(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -113,7 +113,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('folder', ['name' => 'test3', 'id' => $folder3->id, 'folder_id' => $folder->id]);
     }
 
-    public function testFolderDelete()
+    public function testFolderDelete(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -133,7 +133,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseMissing('folder', ['id' => $folder2->id]);
     }
 
-    public function testFileAdd()
+    public function testFileAdd(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -151,7 +151,7 @@ class MediaTest extends TestCase
         $this->assertSame($media[0]['name'], 'file.jpg');
     }
 
-    public function testFile()
+    public function testFile(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -179,7 +179,7 @@ class MediaTest extends TestCase
         ]);
     }
 
-    public function testFileDelete()
+    public function testFileDelete(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -198,7 +198,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseMissing('media', ['id' => $media['id']]);
     }
 
-    public function testFileUpdate()
+    public function testFileUpdate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -221,7 +221,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('media', ['id' => $media['id'], 'name' => 'newFileName.png']);
     }
 
-    public function testFileMoveUp()
+    public function testFileMoveUp(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -250,7 +250,7 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('media', ['id' => $media['id'], 'model_id' => $folder->id]);
     }
 
-    public function testFileMove()
+    public function testFileMove(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -279,13 +279,13 @@ class MediaTest extends TestCase
         $this->assertDatabaseHas('media', ['id' => $media['id'], 'model_id' => $folder2->id]);
     }
 
-    public function testFileCropp()
+    public function testFileCropp(): void
     {
         /* No idea how to test it */
         $this->assertSame(true, true);
     }
 
-    public function testFileCopy()
+    public function testFileCopy(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);

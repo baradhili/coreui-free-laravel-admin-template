@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Menus\GetSidebarMenu;
-//use App\Services\EditMenuViewService;
 use App\Models\Menulist;
 use App\Models\Menurole;
 use App\Models\Menus;
+//use App\Services\EditMenuViewService;
 use App\Services\RolesService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class MenuElementController extends Controller
 {
@@ -24,7 +27,7 @@ class MenuElementController extends Controller
         $this->middleware('admin');
     }
 
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         if ($request->has('menu')) {
             $menuId = $request->input('menu');
@@ -47,7 +50,7 @@ class MenuElementController extends Controller
         ]);
     }
 
-    public function moveUp(Request $request)
+    public function moveUp(Request $request): RedirectResponse
     {
         $element = Menus::where('id', '=', $request->input('id'))->first();
         $switchElement = Menus::where('menu_id', '=', $element->menu_id)
@@ -64,7 +67,7 @@ class MenuElementController extends Controller
         return redirect()->route('menu.index', ['menu' => $element->menu_id]);
     }
 
-    public function moveDown(Request $request)
+    public function moveDown(Request $request): RedirectResponse
     {
         $element = Menus::where('id', '=', $request->input('id'))->first();
         $switchElement = Menus::where('menu_id', '=', $element->menu_id)
@@ -81,7 +84,7 @@ class MenuElementController extends Controller
         return redirect()->route('menu.index', ['menu' => $element->menu_id]);
     }
 
-    public function getParents(Request $request)
+    public function getParents(Request $request): JsonResponse
     {
         $menuId = $request->input('menu');
         $result = Menus::where('menus.menu_id', '=', $menuId)
@@ -93,7 +96,7 @@ class MenuElementController extends Controller
         );
     }
 
-    public function create()
+    public function create(): View
     {
         return view('dashboard.editmenu.create', [
             'roles' => RolesService::get(),
@@ -129,7 +132,7 @@ class MenuElementController extends Controller
         return $result;
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate($this->getValidateArray());
         $menus = new Menus();
@@ -158,7 +161,7 @@ class MenuElementController extends Controller
         return redirect()->route('menu.create');
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
         return view('dashboard.editmenu.edit', [
             'roles' => RolesService::get(),
@@ -168,7 +171,7 @@ class MenuElementController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         //var_dump( $_POST );
         //die();
@@ -208,7 +211,7 @@ class MenuElementController extends Controller
         return redirect()->route('menu.edit', ['id' => $request->input('id')]);
     }
 
-    public function show(Request $request)
+    public function show(Request $request): View
     {
         $menuElement = Menus::join('menus as mparent', 'menus.parent_id', '=', 'mparent.id')
         ->select('menus.*', 'mparent.name as parent_name')
@@ -224,7 +227,7 @@ class MenuElementController extends Controller
         ]);
     }
 
-    public function delete(Request $request)
+    public function delete(Request $request): View
     {
         $menus = Menus::where('id', '=', $request->input('id'))->first();
         $menuId = $menus->menu_id;

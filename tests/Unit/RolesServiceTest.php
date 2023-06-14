@@ -14,7 +14,7 @@ class RolesServiceTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testRolesService()
+    public function testRolesService(): void
     {
         Role::create(['name' => 'test1']);
         Role::create(['name' => 'test2']);
@@ -25,7 +25,7 @@ class RolesServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testRolesIndex()
+    public function testRolesIndex(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -36,7 +36,7 @@ class RolesServiceTest extends TestCase
         $response->assertSee('xyzabc');
     }
 
-    public function testRolesCreate()
+    public function testRolesCreate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -45,7 +45,7 @@ class RolesServiceTest extends TestCase
         $response->assertSee('Create new role');
     }
 
-    public function testRolesStore()
+    public function testRolesStore(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -56,7 +56,7 @@ class RolesServiceTest extends TestCase
         $this->assertDatabaseHas('role_hierarchy', ['role_id' => $role->id]);
     }
 
-    public function testRolesEdit()
+    public function testRolesEdit(): void
     {
         $user = User::factory()->admin()->create();
         $id = Role::create(['name' => 'admin']);
@@ -70,7 +70,7 @@ class RolesServiceTest extends TestCase
         $response->assertSee('admin');
     }
 
-    public function testRolesUpdate()
+    public function testRolesUpdate(): void
     {
         $user = User::factory()->admin()->create();
         $id = Role::create(['name' => 'admin']);
@@ -83,7 +83,7 @@ class RolesServiceTest extends TestCase
         $this->assertDatabaseHas('roles', ['id' => $id->id, 'name' => 'abcdef']);
     }
 
-    public function testRolesDestroy()
+    public function testRolesDestroy(): void
     {
         $user = User::factory()->admin()->create();
         $id = Role::create(['name' => 'admin']);
@@ -100,7 +100,7 @@ class RolesServiceTest extends TestCase
         $this->assertDatabaseMissing('role_hierarchy', ['role_id' => $id->id]);
     }
 
-    public function testRolesNotDestroy()
+    public function testRolesNotDestroy(): void
     {
         $user = User::factory()->admin()->create();
         $id = Role::create(['name' => 'admin']);
@@ -121,7 +121,7 @@ class RolesServiceTest extends TestCase
         $this->assertDatabaseHas('role_hierarchy', ['role_id' => $id->id]);
     }
 
-    public function testRolesMoveUp()
+    public function testRolesMoveUp(): void
     {
         $user = User::factory()->admin()->create();
         $idRoleOne = Role::create(['name' => 'admin']);
@@ -140,7 +140,7 @@ class RolesServiceTest extends TestCase
         $this->assertDatabaseHas('role_hierarchy', ['role_id' => $idRoleOne->id, 'hierarchy' => 2]);
     }
 
-    public function testRolesMoveDown()
+    public function testRolesMoveDown(): void
     {
         $user = User::factory()->admin()->create();
         $idRoleOne = Role::create(['name' => 'admin']);

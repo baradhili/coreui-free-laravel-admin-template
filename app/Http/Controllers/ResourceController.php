@@ -6,19 +6,19 @@ use App\Models\Form;
 use App\Models\FormField;
 use App\Services\FormService;
 use App\Services\ResourceService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
 class ResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index($table, Request $request)
+    public function index($table, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -52,10 +52,8 @@ class ResourceController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create($table, Request $request)
+    public function create($table, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -93,10 +91,8 @@ class ResourceController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store($table, Request $request)
+    public function store($table, Request $request): RedirectResponse
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -135,11 +131,8 @@ class ResourceController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($table, $id, Request $request)
+    public function show($table, int $id, Request $request): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -173,11 +166,8 @@ class ResourceController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($table, $id)
+    public function edit($table, int $id): View
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -215,11 +205,8 @@ class ResourceController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update($table, $id, Request $request)
+    public function update($table, int $id, Request $request): RedirectResponse
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {
@@ -259,10 +246,9 @@ class ResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($table, Request $request, $id)
+    public function destroy($table, Request $request, int $id)
     {
         $role = Role::where('name', '=', 'guest')->first();
         try {

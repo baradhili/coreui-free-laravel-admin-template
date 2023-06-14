@@ -14,7 +14,7 @@ class MenuElementTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testMenuElementsIndex()
+    public function testMenuElementsIndex(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -31,7 +31,7 @@ class MenuElementTest extends TestCase
         $response->assertSee('Menu Elements');
     }
 
-    public function testMenuCreate()
+    public function testMenuCreate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -45,7 +45,7 @@ class MenuElementTest extends TestCase
         $response->assertSee('Create menu element');
     }
 
-    public function testMenuStore()
+    public function testMenuStore(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -80,7 +80,7 @@ class MenuElementTest extends TestCase
         ]);
     }
 
-    public function testMenuEdit()
+    public function testMenuEdit(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -106,7 +106,7 @@ class MenuElementTest extends TestCase
         $response->assertSee('Edit menu element');
     }
 
-    public function testMenuUpdate()
+    public function testMenuUpdate(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);
@@ -160,7 +160,7 @@ class MenuElementTest extends TestCase
         ]);
     }
 
-    public function testMenuDelete()
+    public function testMenuDelete(): void
     {
         $user = User::factory()->admin()->create();
         $adminRole = Role::create(['name' => 'admin']);

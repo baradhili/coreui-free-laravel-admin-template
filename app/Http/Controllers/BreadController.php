@@ -6,17 +6,17 @@ use App\Models\Form;
 use App\Models\FormField;
 use App\Services\FormService;
 use App\Services\RolesService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class BreadController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         //var_dump(DB::getSchemaBuilder()->getColumnListing('model'));
 
@@ -25,10 +25,8 @@ class BreadController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return view('dashboard.form.create');
     }
@@ -74,11 +72,8 @@ class BreadController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         return view('dashboard.form.show', [
             'form' => Form::find($id),
@@ -88,11 +83,8 @@ class BreadController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $formService = new FormService();
         $rolesService = new RolesService();
@@ -108,11 +100,8 @@ class BreadController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|min:1|max:128',
@@ -128,10 +117,9 @@ class BreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(int $id, Request $request)
     {
         $form = Form::find($id);
         if ($request->has('marker')) {
